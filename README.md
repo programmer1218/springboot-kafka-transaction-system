@@ -30,6 +30,7 @@ Key Learnings
 
 System Design Diagram
 flowchart LR
+
     A[Transaction Producer / Test Input] -->|Publishes Transaction| B[Kafka Topic: trader-updates]
 
     B --> C[Spring Boot Kafka Listener<br/>TransactionListener]
