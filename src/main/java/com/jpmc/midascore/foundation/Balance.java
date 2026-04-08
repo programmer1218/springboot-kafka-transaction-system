@@ -1,9 +1,7 @@
 package com.jpmc.midascore.foundation;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Balance {
+
     private float amount;
 
     public Balance() {
@@ -23,6 +21,6 @@ public class Balance {
 
     @Override
     public String toString() {
-        return "Balance {amount=" + amount + "}";
+        return String.format("Balance{amount=%f}", amount);
     }
 }
