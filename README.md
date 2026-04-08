@@ -28,9 +28,3 @@ Key Learnings
 - Data consistency in financial operations
 - REST API design and external API consumption
 
-
-
-
-
-
-If you want, I’ll now give you a perfect GitHub README + LinkedIn post + resume entry for this exact project.
