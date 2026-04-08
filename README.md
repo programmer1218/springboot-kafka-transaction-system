@@ -52,3 +52,10 @@ flowchart LR
     J --> K[REST Controller<br/>GET /balance?userId=...]
     K --> L[Return Balance Response]
 
+
+Architecture Summary
+- Kafka is used for asynchronous transaction ingestion
+- Spring Boot processes and validates transactions
+- H2 + JPA store users and transaction records
+- Incentive API adds external reward logic
+- REST API exposes user balances through `/balance`
