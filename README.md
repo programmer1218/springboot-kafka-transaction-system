@@ -28,3 +28,26 @@ Key Learnings
 - Data consistency in financial operations
 - REST API design and external API consumption
 
+System Design Diagram
+flowchart LR
+    A[Transaction Producer / Test Input] -->|Publishes Transaction| B[Kafka Topic: trader-updates]
+
+    B --> C[Spring Boot Kafka Listener<br/>TransactionListener]
+
+    C --> D{Validate Transaction}
+    D -->|Invalid| X[Discard Transaction]
+    D -->|Valid| E[Fetch Sender & Recipient<br/>from H2 Database]
+
+    E --> F[Call Incentive API<br/>POST /incentive]
+    F --> G[Receive Incentive Amount]
+
+    G --> H[Update Balances]
+    H --> H1[Sender Balance = Sender - Amount]
+    H --> H2[Recipient Balance = Recipient + Amount + Incentive]
+
+    H --> I[Persist Transaction Record<br/>using Spring Data JPA]
+    I --> J[(H2 Database)]
+
+    J --> K[REST Controller<br/>GET /balance?userId=...]
+    K --> L[Return Balance Response]
+
